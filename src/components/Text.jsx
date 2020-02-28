@@ -106,7 +106,7 @@ class Text extends React.Component {
 		let typingField = document.getElementById('type');
 		let input = typingField ? typingField.value : "";
 
-		var incorrect = false;
+		let incorrect = false;
 		for(let i=0; word && i<word.length; i++) {
 			if(input[i] == undefined) {
 				letterRest += word[i];
