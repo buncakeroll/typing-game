@@ -31,6 +31,7 @@ html {
   max-width: 600px;
   border: 1px solid black;
   border-radius: 5px;
+  background: #b52bff;
 }
 
 .header {
@@ -55,7 +56,7 @@ h2 {
   padding: 1rem 2rem;
   margin: 2rem 1rem 1rem;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid #b3b3b3;
   border-radius: 5px;
   font-size: 1.25rem;
   -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -63,12 +64,12 @@ h2 {
 box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
-#type {
+input[type=text] {
   display: block;
   margin: 0 auto;
   text-align: center;
-  min-width: 5rem;
-  min-height: 1.5rem;
+  min-width: 400px;
+  min-height: 2rem;
 
 }
 
@@ -77,12 +78,21 @@ box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding: 1rem;
   margin: 0 auto;
+
 }
 
 .box {
+  padding: 1rem;
+margin: 1rem;
+color: #003399;
   background-color: white;
-border: 1px springgreen solid;
+border: 1px #b3b3b3 solid;
+border-radius: 5px;
+-webkit-box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 4px 0px rgba(0,0,0,0.75);
 }
 .results {
   display: flex;

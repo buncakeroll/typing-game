@@ -40,14 +40,14 @@ class Text extends React.Component {
 			
 		}
 
-		if(this.state.timeElapsed >=60) {
+		if(this.state.timeElapsed == 60) {
 			this.setState({
 				minutes: this.state.minutes++,
                 seconds: 0,
                 wpm: this.state.wpm
             
             })
-            alert("GAME OVER! Score") 
+            alert("GAME OVER!") 
 		}
 		if(this.state.seconds<10) {
 			this.setState({
