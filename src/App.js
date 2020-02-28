@@ -8,8 +8,8 @@ export class App extends Component {
   return (
     <div className="game">
       <div className="header">
-        <h1 className="header--title">Words Per Minute Test</h1>
-        <h2 className="header--text">How many words can you type in one minute?</h2>
+        <h1 className="header--title">TA's Per Minute Test</h1>
+        <h2 className="header--text">How many TA's can you type in one minute?</h2>
         <h2 className="header--text">Timer starts when you start typing</h2>
       </div>
     <Text />

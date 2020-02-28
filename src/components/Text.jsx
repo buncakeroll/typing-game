@@ -46,8 +46,9 @@ class Text extends React.Component {
                 seconds: 0,
                 wpm: this.state.wpm
             
-            })
-            alert("GAME OVER!") 
+            }) 
+            alert(`Your TA's per minute is ${this.state.wpm}`);
+            window.location.reload();
 		}
 		if(this.state.seconds<10) {
 			this.setState({
@@ -66,10 +67,10 @@ class Text extends React.Component {
 		if (!this.stopwatch)
 			this.stopwatch = setInterval(this.displayTimeElapsed, 1000);
 
-		var currWord = this.textArray[this.index];
-		var typingFieldValue = document.getElementById('type').value;
+		let currWord = this.textArray[this.index];
+		let typingFieldValue = document.getElementById('type').value;
 
-		var lastWord = this.index >= this.textArray.length-1;
+		let lastWord = this.index >= this.textArray.length-1;
 
 		if (typingFieldValue == (lastWord ? currWord : currWord + " ")) {
 			this.letterIndex = 0;
@@ -88,24 +89,25 @@ class Text extends React.Component {
 
 
 	render() {
-		var paragraph = this.textArray;
-		var correct = paragraph.slice(0, this.index).join(" ");
+        console.log('render')
+		let paragraph = this.textArray;
+		let correct = paragraph.slice(0, this.index).join(" ");
 		if (this.index < this.textArray.length)
 			correct += " ";
-		var rest = this.index <= paragraph.length ? " " + paragraph.slice(this.index+1).join(" ") : "";
+		let rest = this.index <= paragraph.length ? " " + paragraph.slice(this.index+1).join(" ") : "";
 
 
-		var word = paragraph[this.index];
+		let word = paragraph[this.index];
 
-		var rightChar = "";
-		var wrongChar = "";
-		var letterRest = "";
+		let rightChar = "";
+		let wrongChar = "";
+		let letterRest = "";
 
-		var typingField = document.getElementById('type');
-		var input = typingField ? typingField.value : "";
+		let typingField = document.getElementById('type');
+		let input = typingField ? typingField.value : "";
 
 		var incorrect = false;
-		for(var i=0; word && i<word.length; i++) {
+		for(let i=0; word && i<word.length; i++) {
 			if(input[i] == undefined) {
 				letterRest += word[i];
 			}
@@ -133,12 +135,12 @@ class Text extends React.Component {
 					</div>
 				<input id="type" type="text" placeholder="Type here" autoFocus onChange={this.handleChange}/>
                 <div className="results">
-            	<p id="time-elapsed">1 Minute Timer: 
+            	<p id="time-elapsed">Timer 
                 <span className="box">
                 {this.state.displayTime}
                 </span>
                 </p>
-				<p id="wpm">Words per Minute: 
+				<p id="wpm">TA's Per Minute
                 <span className="box">
                 {this.state.wpm}
                 </span>
