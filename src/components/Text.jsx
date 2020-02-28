@@ -1,4 +1,5 @@
 import React from 'react';
+
 const data = require('../../src/data.json');
 
 class Text extends React.Component {
