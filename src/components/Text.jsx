@@ -7,20 +7,20 @@ class Text extends React.Component {
 		this.state = {
 			data: data.data,
 			timeElapsed: 0,
-			wpm: "",
+			wpm: "0",
 			minutes: 0,
 			seconds: 0,
-			timeDisplayed: "00:00" 
+			displayTime: "00:00" 
 		}
 		this.startStopwatch = false;
 		this.pressedBackspace = false;
 		this.random = Math.floor(Math.random()*this.state.data.length);
 		this.text = this.state.data[this.random].text;
 		this.textArray = this.text.split(" ");
-		this.totalWords =  this.textArray.length;
+		this.sumWords =  this.textArray.length;
 		this.index = 0;
 		this.wordCount = 0;
-		//this.stopwatch;
+		
 		
 		this.handleChange = this.handleChange.bind(this);
 		this.displayTimeElapsed = this.displayTimeElapsed.bind(this);
@@ -30,7 +30,7 @@ class Text extends React.Component {
 		this.setState({
 			timeElapsed: this.state.timeElapsed+1,
 			seconds: ++this.state.seconds,
-			timeDisplayed: "0" + this.state.minutes + ":" + this.state.seconds 
+			displayTime: "0" + this.state.minutes + ":" + this.state.seconds 
 		});
 
 		if(this.wordCount>0) {
@@ -43,43 +43,47 @@ class Text extends React.Component {
 		if(this.state.timeElapsed >=60) {
 			this.setState({
 				minutes: this.state.minutes++,
-				seconds: 0
-			})
+                seconds: 0,
+                wpm: this.state.wpm
+            
+            })
+            alert("GAME OVER! Score") 
 		}
 		if(this.state.seconds<10) {
 			this.setState({
-				timeDisplayed: 0 + this.state.minutes + ":0" + this.state.seconds
+				displayTime: 0 + this.state.minutes + ":0" + this.state.seconds
 			});
 		}
-
 	}
 
 	handleChange() {
 		if (document.getElementById('btn-countdown'))
 		{
-			document.getElementById('typing-field').value="";
+			document.getElementById('type').value="";
 			return;
 		}
 
 		if (!this.stopwatch)
 			this.stopwatch = setInterval(this.displayTimeElapsed, 1000);
 
-		var currentWord = this.textArray[this.index];
-		var typingFieldValue = document.getElementById('typing-field').value;
-		var currentLetter= typingFieldValue.slice(-1);
+		var currWord = this.textArray[this.index];
+		var typingFieldValue = document.getElementById('type').value;
+
 		var lastWord = this.index >= this.textArray.length-1;
 
-		if (typingFieldValue == (lastWord ? currentWord : currentWord + " ")) {
+		if (typingFieldValue == (lastWord ? currWord : currWord + " ")) {
 			this.letterIndex = 0;
 			this.index++;
 			this.wordCount++;
-			document.getElementById('typing-field').value = "";
+			document.getElementById('type').value = "";
 
 			if (lastWord) {
 				clearInterval(this.stopwatch);
 			}
 		}
-		this.setState({});
+        this.setState({});
+        
+      
 	}
 
 
@@ -93,11 +97,11 @@ class Text extends React.Component {
 
 		var word = paragraph[this.index];
 
-		var letterCorrect = "";
-		var letterIncorrect = "";
+		var rightChar = "";
+		var wrongChar = "";
 		var letterRest = "";
 
-		var typingField = document.getElementById('typing-field');
+		var typingField = document.getElementById('type');
 		var input = typingField ? typingField.value : "";
 
 		var incorrect = false;
@@ -106,32 +110,41 @@ class Text extends React.Component {
 				letterRest += word[i];
 			}
 			else if(!incorrect && word[i] == input[i]) {
-				letterCorrect += word[i];
+				rightChar += word[i];
 			} 
 			else {
-				letterIncorrect += word[i];
+				wrongChar += word[i];
 				incorrect = true;
 			}
 		}
 
 		return (
 			<div id="text-excerpt">
-					<div className="book">
+					<div className="container">
 						<p id="paragraph">
 							<span className="right-char">{correct}</span>
 							<span className="current-word">
-								<span className="right-char">{letterCorrect}</span>
-								<span className="wrong-char">{letterIncorrect}</span>
+								<span className="right-char">{rightChar}</span>
+								<span className="wrong-char">{wrongChar}</span>
 								{letterRest}
 							</span>
 							{rest}
 						</p>
 					</div>
-				
-				<input id="typing-field" type="text" placeholder="Type here" autoFocus onChange={this.handleChange}/>
-				<p id="time-elapsed">Time Elapsed: {this.state.timeDisplayed}</p>
-				<p>WPM: {this.state.wpm}</p>
-			</div>
+				<input id="type" type="text" placeholder="Type here" autoFocus onChange={this.handleChange}/>
+                <div className="results">
+            	<p id="time-elapsed">1 Minute Timer: 
+                <span className="box">
+                {this.state.displayTime}
+                </span>
+                </p>
+				<p id="wpm">Words per Minute: 
+                <span className="box">
+                {this.state.wpm}
+                </span>
+                </p>
+                </div>
+            </div>
 		)
 	}
 }
