@@ -3,7 +3,7 @@ import "./App.scss";
 import Text from "./components/Text";
 import Lauren from "../src/assets/lauren.png";
 import Lesley from "../src/assets/lesley.png";
-import Jon from "../src/assets/jon.png";
+import Jon from "../src/assets/jon.jpeg";
 import Eula from "../src/assets/eula.png";
 
 export class App extends Component {
