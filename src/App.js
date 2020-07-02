@@ -1,29 +1,31 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import Text from './components/Text';
-import Josh from '../src/assets/josh.jpeg';
-import Amy from '../src/assets/amy.jpeg';
-import Roy from '../src/assets/roy.png';
+import React, { Component } from "react";
+import "./App.scss";
+import Text from "./components/Text";
+import Lauren from "../src/assets/lauren.png";
+import Lesley from "../src/assets/lesley.png";
+import Jon from "../src/assets/jon.png";
+import Eula from "../src/assets/eula.png";
 
 export class App extends Component {
   render() {
-  return (
-    <div className="game">
-      <div className="header">
-        <h1 className="header--title">TA's Per Minute Test</h1>
-        <h2 className="header--text">How many TA's can you type in one minute?</h2>
-        <h2 className="header--text">Timer starts when you start typing</h2>
-        <div className="imageBox">
-          <img src={Josh} className="images"/>
-          <img src={Amy} className="images"/>
-          <img src={Roy} className="images"/>
+    return (
+      <div className="game">
+        <div className="header">
+          <h1 className="header--title">Educators's Per Minute Test</h1>
+          <h2 className="header--text">
+            How many Educator's can you type in one minute?
+          </h2>
+          <h2 className="header--text">Timer starts when you start typing</h2>
+          <div className="imageBox">
+            <img src={Jon} className="images" />
+            <img src={Lauren} className="images" />
+            <img src={Lesley} className="images" />
+            <img src={Eula} className="images" />
+          </div>
         </div>
-
+        <Text />
       </div>
-    <Text />
-    </div>
-  );
+    );
   }
 }
 
